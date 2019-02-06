@@ -4,14 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Application;
 use App\application_caterory;
+use App\appusers;
 use Auth;
+use Egulias\EmailValidator\Validation\isValid;
 use Illuminate\Http\Concerns\hasFile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
-use Session;
-use Egulias\EmailValidator\Validation\isValid;
 use Image;
+use Session;
 
 
 class applicationcontroller extends Controller
@@ -98,7 +99,20 @@ class applicationcontroller extends Controller
     public function show_application(Request $request)
     {
     	$Applications = Application::get();
-        return view('admin.application.show_application')->with(compact('Applications'));
+                        
+        $users = DB::table('appusers')
+                     ->Join('applications', 'applications.id', '=', 'appusers.app_id')
+                     ->select(DB::raw('count(*) as all_user, name'))
+                     ->whereNull('deleted_at')
+                     ->where('app_id', '<>', 1)
+                     ->groupBy('app_id')
+                     ->get();
+                    //echo "<pre>";print_r($users);die();
+                   
+                        
+                        
+                        
+        return view('admin.application.show_application')->with(compact('Applications','users'));
     }
 
     public function edit_application(Request $request,$id=null)

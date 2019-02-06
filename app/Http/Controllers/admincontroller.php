@@ -100,14 +100,7 @@ class admincontroller extends Controller
     }
     public function settings()
     {
-        if(Session::has('adminSession'))
-        {
-           //perform all settings task
-        }
-        else
-        {
-         return redirect('/admin')->with('flash_message_logout','Please Login To Access');
-        }
+        
         return view ('admin.settings');
     }
 
@@ -117,7 +110,6 @@ class admincontroller extends Controller
             $current_password = $data['current_Pwd'];
             
             $check_password = DB::table('users')->first();
-            //dd($check_password);
             if(Hash::check($current_password,$check_password->password))
             {
                 echo "true"; die;
@@ -134,7 +126,6 @@ class admincontroller extends Controller
             $data = $request->all();
             
             $check_password = User::where(['email' => Auth::user()->email])->first();
-            //dd($check_password);
             $current_password = $data['current_Pwd'];
 
             if(Hash::check($current_password,$check_password->password))

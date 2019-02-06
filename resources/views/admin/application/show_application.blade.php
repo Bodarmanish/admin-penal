@@ -71,6 +71,7 @@
                                   <th>Apps Id</th>
                                   <th>Platform</th>
                                   <th>Application Name</th>
+                                  <th>Total User</th>
                                   <th>Apps Version </th>
                                   <th>is Banner?</th>
                                   <th>Icon</th>
@@ -87,6 +88,16 @@
                                     <td >{{$apps->id}}</td>
                                     <td class="col">{{$apps->platform}}</td>
                                     <td >{{$apps->name}}</td>
+                                    
+                                    <th>@foreach ($users as $user)
+                                          @if($user->name == $apps->name)
+                                            {{$user->all_user}}
+                                          @elseif(empty($user->all_user))
+                                            {{'0'}}
+                                          @endif
+
+                                        @endforeach</th>
+                                    
                                     <td >{{$apps->Version}}</td>
                                     <td >{{$apps->only_banner}}</td>
                                     <td >

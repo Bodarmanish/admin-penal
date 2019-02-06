@@ -12,13 +12,13 @@
         
     </style>
     <link rel="icon" type="image/png" href="{{asset('forgotpwd/images/icons/favicon.ico')}}"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="{{asset('login172/css/bootstrap.min.css')}}"/>
+  <script src="{{asset('login172/js/jquery.min.js')}}"></script>
+  <script src="{{asset('login172/js/bootstrap.min.js')}}"></script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
  
-    <link rel="icon" type="image/png" href="{{asset('login172/images/icons/favicon.ico"')}}/>
+    <link rel="icon" type="image/png" href="{{asset('login172/images/icons/favicon.ico')}}"/>
 
     <link rel="stylesheet" type="text/css" href="{{asset('login172/vendor/bootstrap/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{ asset('css/backend_css/jquery.gritter.css') }}" />
