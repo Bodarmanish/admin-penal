@@ -22,15 +22,14 @@ class userscontroller extends Controller
 
     public function store(Request $request)
     {
-        //$data = $request->all();
         $appusers = DB::table('appusers')->get();
-        //dd($appusers);
+        
         foreach ($appusers as $selectuser) 
         {
-            if($request->DeviceId == $selectuser->Device_Id && $request->app_id == $selectuser->app_id){
+            if($request->Device_Id == $selectuser->Device_Id && $request->app_id == $selectuser->app_id){
                 
-                appusers::where(['Device_Id'=>$request->DeviceId])->update([
-                    'Device_Id'=>$request['DeviceId'],
+                appusers::where(['id'=>$request->id])->update([
+                    'Device_Id'=>$request['Device_Id'],
                     'Country'=>$request['Country'],
                     'Device_Type'=>$request['Device_Type'],
                     'OS_Version'=>$request['OS_Version'],
@@ -43,7 +42,7 @@ class userscontroller extends Controller
                     'Last_Date_Of_Subscription'=>$request['Last_Date_Of_Subscription'],
                     'app_id'=>$request['app_id'],
                          ]);
-                    $update = appusers::where(['Device_Id'=>$request->DeviceId])->first();
+                    $update = appusers::where(['id'=>$request->id])->first();
                     return response()->json([
                                                 'status'=>'Update success',
                                                 'data'=>$update,
@@ -61,7 +60,8 @@ class userscontroller extends Controller
             if(empty($request['Last_Date_Of_Subscription'])){$request['Last_Date_Of_Subscription'] = 'No Date';}
 
             $data = new appusers;
-            $data->Device_Id = $request->DeviceId;
+            $data->app_id = $request->app_id;
+            $data->Device_Id = $request->Device_Id;
             $data->Country=$request->Country;
             $data->Device_Type=$request->Device_Type;
             $data->OS_Version=$request->OS_Version;
@@ -72,13 +72,22 @@ class userscontroller extends Controller
             $data->Purchase_Unlimited=$request->Purchase_Unlimited;
             $data->Purchase_Subscription=$request->Purchase_Subscription;
             $data->Last_Date_Of_Subscription=$request->Last_Date_Of_Subscription;
-            $data->app_id = $request->app_id;
+            //dd($data);die();
             $data->save();
-           //return "add suceess";
-        return response()->json([
-                                    'status'=>'add success',
-                                    'data'=>$data,
 
+            return response()->json([
+                                    'status'=>'add success',
+                                    'app_id'=>$request->app_id,
+                                    'Device_Id'=>$request->Device_Id,
+                                    'Country'=>$request->Country,
+                                    'Device_Type'=>$request->Device_Type,
+                                    'OS_Version'=>$request->OS_Version,
+                                    'App_Version'=>$request->App_Version,
+                                    'Is_Full_Access'=>$request->Is_Full_Access,
+                                    'Purchase_Ads'=>$request->Purchase_Ads,
+                                    'Purchase_Watermark'=>$request->Purchase_Watermark,
+                                    'Purchase_Unlimited'=>$request->Purchase_Unlimited,
+                                    'Purchase_Subscription'=>$request->Purchase_Subscription,
                                 ]);
 
     }

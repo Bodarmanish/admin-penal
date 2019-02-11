@@ -88,24 +88,22 @@
                                     <td >{{$apps->id}}</td>
                                     <td class="col">{{$apps->platform}}</td>
                                     <td >{{$apps->name}}</td>
-                                    
                                     <th>@foreach ($users as $user)
                                           @if($user->name == $apps->name)
                                             {{$user->all_user}}
                                           @elseif(empty($user->all_user))
                                             {{'0'}}
                                           @endif
-
-                                        @endforeach</th>
-                                    
+                                        @endforeach
+                                    </th>
                                     <td >{{$apps->Version}}</td>
                                     <td >{{$apps->only_banner}}</td>
                                     <td >
                                      <img class="appimage" src="{{asset('/icon/'.$apps->icon)}}" style="height: 40px;width: 40px">
                                     </td>
-                                    <td ><div style="margin-left:0px;" class="fr"> 
-                                      <a href="/admin/edit_application/{{$apps->id}}" class="btn btn-primary btn-mini">Edit</a>
-                                      <a href="{{ $apps->link }}" target="_blank" class="btn btn-success btn-mini">Link</a>
+                                    <td > 
+                                      <a href="/admin/edit_application/{{$apps->id}}" class="btn btn-primary btn-mini" style="padding: 05px">Edit</a>
+                                      <a href="{{ $apps->link }}" target="_blank" class="btn btn-success btn-mini" style="padding: 05px;float: right;">Link</a>
                                     </td>   
                                   </tr>
 

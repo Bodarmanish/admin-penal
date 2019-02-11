@@ -1,9 +1,10 @@
 @extends('sitedesign.adminlayout.admin_design')
 
 <title>9Brainz Admin</title>
+
 @section('maincont')
 
-<div class="right_col" role="main" style="min-height:00px;">
+<div class="right_col" role="main">
   <div class="row">        
   <div class="col-md-12 col-sm-12 col-xs-12">
                   <div class="x_panel">

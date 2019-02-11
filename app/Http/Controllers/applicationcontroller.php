@@ -107,11 +107,7 @@ class applicationcontroller extends Controller
                      ->where('app_id', '<>', 1)
                      ->groupBy('app_id')
                      ->get();
-                    //echo "<pre>";print_r($users);die();
                    
-                        
-                        
-                        
         return view('admin.application.show_application')->with(compact('Applications','users'));
     }
 
